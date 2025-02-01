@@ -48,7 +48,7 @@ This repository contains operating system and Docker packaging for Jellyfin, for
 
 ## Quickstart
 
-To build Jellyfin packages for yourself, follow this quickstart guide. You will need to be running on a Linux system, preferably Debian- or Ubuntu-based, with Docker, Python3 and the Python packages `PyYAML` and `git` (`python3-yaml` and `python3-git` in Debian). Other systems including WSL are untested.
+To build Jellyfin packages for yourself, follow this quickstart guide. You will need to be running on a Linux system, preferably Debian- or Ubuntu-based, with Docker, Python3 and the Python packages `PyYAML`, `git` and `packaging` (`python3-yaml`, `python3-git` and `python3-packaging` in Debian). Other systems including WSL are untested.
 
 1. Install Docker on your system. The build scripts leverage Docker containers to perform clean builds and avoid contaminating the host system with dependencies.
 
@@ -65,7 +65,7 @@ If you want a non-Docker image output (`.deb`, `tar`/`zip` archive, etc.) follow
 1. Run `./build.py`. This command takes up to 4 arguments, depending on what you're trying to build:
 
    * The first argument is the version you want to tag your build as. For our official releases, we use either dates for unstable builds (`YYYYMMDDHH` numerical format or `auto` for autogeneration) or the tag without `v` for stable release builds (`10.8.13`, `10.9.0`, etc.), but you can use any version tag you wish here.
-   
+
    * The second argument is the "platform" you want to build for. The available options are listed as top-level keys in the `build.yaml` configuration file or in the `-h` help output.
 
    * The third argument is, for all platforms except `portable` (DotNET portable), the architecture you want to build for. For each platform, the available architectures can be found as the keys under `archmaps` in the `build.yaml` configuration file.
@@ -111,7 +111,7 @@ If you want a Docker image output follow this process:
 1. Run `./build.py`. This command takes up to 4 arguments specific to Docker builds:
 
    * The first argument is the version you want to tag your build as. For our official releases, we use either dates for unstable builds (`YYYYMMDDHH` numerical format or `auto` for autogeneration) or the tag without `v` for stable release builds (`10.8.13`, `10.9.0`, etc.), but you can use any version tag you wish here.
-   
+
    * The second argument is the "platform" you want to build for. For Docker images, this should be `docker`.
 
    * The third argument is the architecture you wish to build for. This argument is optional, and not providing it will build images for all supported architectures (sequentially).
