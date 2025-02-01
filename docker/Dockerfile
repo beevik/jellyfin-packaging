@@ -210,6 +210,14 @@ LABEL "org.opencontainers.image.documentation"="https://jellyfin.org/docs/"
 LABEL "org.opencontainers.image.version"="${JELLYFIN_VERSION}"
 LABEL "org.opencontainers.image.url"="https://jellyfin.org"
 
+# Create jellyfin user and group
+RUN groupadd -g 503 jellyfin \
+ && useradd -g 503 -u 503 -M jellyfin \
+ && chown -R jellyfin:jellyfin /jellyfin ${JELLYFIN_DATA_DIR} ${JELLYFIN_CACHE_DIR}
+
+# Don't run jellyfin as root
+USER jellyfin:jellyfin
+
 EXPOSE 8096
 VOLUME ${JELLYFIN_DATA_DIR} ${JELLYFIN_CACHE_DIR}
 ENTRYPOINT ["/jellyfin/jellyfin"]
